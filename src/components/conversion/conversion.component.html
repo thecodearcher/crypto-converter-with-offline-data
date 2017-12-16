@@ -1,0 +1,41 @@
+<div text-center class="primary_bg upper">
+
+  <div (click)="showConvert()" class=" center">
+
+    <span class="big_text">{{user_input | number}}</span>
+    <button  class='btn' ion-button round>{{selected_from_type}}</button>
+  </div>
+</div>
+<ion-list *ngIf="total">
+  <ion-item *ngFor="let price of total">
+    <span class="green">{{price.price | number}}</span>
+    <span item-end>{{price.key}}</span>
+  </ion-item>
+</ion-list>
+
+<ion-list>
+  <ion-list-header>
+  Current Market Price  
+  </ion-list-header>
+  <ion-item>
+    <span class="primary">BTC</span>
+    <span class="green" item-end>{{btc_usd | currency:'USD':"symbol-narrow"}}</span>
+    <span item-end>|</span>
+    <span class="green" item-end>{{btc_ngn | currency:'NGN':"symbol-narrow"}}</span>
+    <span item-end></span>
+    
+  </ion-item>
+  <ion-item>
+    <span class="primary">ETH</span>
+    <span class="green" item-end>{{eth_usd | currency:'USD':"symbol-narrow"}}</span>
+    <span item-end>|</span>
+    <span class="green" item-end>{{eth_ngn | currency:'NGN':"symbol-narrow"}}</span>
+    <span item-end></span>
+    
+  </ion-item>
+</ion-list>
+<ion-fab *ngIf="total.length>0" bottom right>
+  <button ion-fab icon-only (click)="reset()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+</ion-fab>

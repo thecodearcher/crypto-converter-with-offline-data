@@ -5,26 +5,40 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { SqlProvider } from '../providers/sql/sql';
+import { NetworkProvider } from '../providers/network/network';
+import { SQLite } from '@ionic-native/sqlite';
+import { Network } from '@ionic-native/network';
+import { HttpModule } from '@angular/http';
+import { CryptoInfoProvider } from '../providers/crypto-info/crypto-info';
+import { OpenNativeSettings } from '@ionic-native/open-native-settings';
+import { HeaderColor } from '@ionic-native/header-color';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SQLite,
+    Network,
+    SqlProvider,
+    NetworkProvider,
+    OpenNativeSettings,
+    CryptoInfoProvider,
+    HeaderColor
   ]
 })
 export class AppModule {}
